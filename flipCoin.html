@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+</head>
+<body>
+<center>
+    <div>
+        <img id="kuva1" src="klaava.png"/>
+        <img id="kuva2" src="kruuna.png"/>
+    </div><div>
+    </br>       
+        <button id="nappi" onclick = "pelaa()">Click & Roll</button>
+        <button id="again" onclick = "pelaaAgain()">Try again</button> 
+    
+
+<h3 id="counter-label"></div></h3>
+<br/><br/><h2 id="tulos"></h2></center> 
+
+<script>
+    var theImg = document.getElementById('kuva1');
+theImg.height = 400;
+theImg.width = 400;
+    var theImg = document.getElementById('kuva2');
+theImg.height = 400;
+theImg.width = 400;
+/*
+Ohjelma ns. heittää kahta rahaa. Jos molemmat ovat kruunuja, niin peli loppuu.
+Aluksi arvotaan luku eli ykkönen tai kakkonen.
+Ykkönen tarkoittaa klaavaa ja kakkonen kruunaa.
+*/
+	"use strict"; 
+    
+    var count = -1;
+    var coun = 0;
+	var img1 = document.getElementById("kuva1"); 
+	var img2 = document.getElementById("kuva2");
+    document.getElementById("again").disabled = true;
+    function counter() {
+        count++;
+        coun++;
+    }
+    
+    function pelaa() {   
+        counter();       
+        coun++;
+        document.getElementById("counter-label").innerHTML += "</br>Click!";
+		var luku1 = Math.floor((Math.random()*2)+1); //Arvotaan luku väliltä 1 - 2 
+		if(luku1 == 1) { //Jos sattuu ykkönen, niin näytetään klaavan kuva
+			img1.src = "klaava.png"; //Muutetaan  dokumentilla olevan kuva1:n src-arvo (imgage source eli img src)
+		}
+		if(luku1 == 2) {
+			img1.src = "kruuna.png";
+		}
+		//toka kuva
+		var luku2 = Math.floor((Math.random()*2)+1);
+			if(luku2 == 1) {
+			img2.src = "klaava.png";
+		}
+			if(luku2 == 2) {
+			img2.src = "kruuna.png";
+		}
+		//tulostus
+		if(luku1 == 2 && luku2 == 2){ //kahdella kruunalla peli loppuu
+            var chance = Math.pow(0.75, count);
+            chance = chance * 100;
+            if (count ==0 ){
+                document.getElementById("tulos").innerHTML = "TWO FACES! GAME OVER! </br> Your score: " + count + "</br>Chance to loose immediately is 0.25 or 25 %. </br>Only 6,25 % to loose twice in a row!";
+            }
+            if (count>6 && count <= 10){
+                document.getElementById("tulos").innerHTML = "</br>Oh my, you got " + count + " points, thats a lot!<br> Chance was just: " + chance.toFixed(2) + " %";
+            }
+
+            if (count > 10){
+                document.getElementById("tulos").innerHTML = "</br>SKDSNdsnos&#@59 - " + count + " - F***ING. points. WE GOT A WINNEEEEEER!!! 100% saffSAF3257(#0=[sgdmpm<br> HOW DID YOU DO THAT??? </br>CHANCE WAS: " + chance.toFixed(6) + " % " + "</br>this page looks like a face lol";
+            }
+            
+            if (count > 0 && count <= 6){
+                document.getElementById("tulos").innerHTML = "TWO FACES! GAME OVER! </br> Your score: " + count + "</br>Chance was: " + chance.toFixed(2) + " %";
+            }
+        
+			document.getElementById("nappi").disabled = true; //nappi pois käytöstä
+            document.getElementById("again").disabled = false;
+            document.getElementById("counter-label").innerHTML = "";
+		}
+	}
+    function pelaaAgain(){
+        document.getElementById("nappi").disabled = false; //ei nappi pois käytöstä
+        document.getElementById("tulos").innerHTML = "";
+        document.getElementById("again").disabled = true;
+        count=-1;
+        coun++;
+    }
+
+</script>
+
+</body>
+</html>
